@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/wrelin/web-crawler/internal/crawling"
+	"github.com/wrelin/web-crawler/internal/report"
 	"log"
 	"os"
 	"strconv"
@@ -41,7 +43,7 @@ func main() {
 		maxPages = converted
 	}
 
-	cfg, err := configure(rawBaseURL, maxConcurrency, maxPages)
+	cfg, err := crawling.Configure(rawBaseURL, maxConcurrency, maxPages)
 	if err != nil {
 		fmt.Printf("Error - configure: %v", err)
 		return
@@ -49,11 +51,11 @@ func main() {
 
 	fmt.Printf("starting crawl of: %s...\n", rawBaseURL)
 
-	cfg.wg.Add(1)
-	go cfg.crawlPage(rawBaseURL)
-	cfg.wg.Wait()
+	cfg.Wg.Add(1)
+	go cfg.CrawlPage(rawBaseURL)
+	cfg.Wg.Wait()
 
-	if err := writeCSVReport(cfg.pages, "report.csv"); err != nil {
+	if err := report.WriteCSVReport(cfg.Pages, "report.csv"); err != nil {
 		fmt.Printf("Error - writeCSVReport: %v\n", err)
 	}
 }

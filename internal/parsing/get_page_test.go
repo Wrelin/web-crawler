@@ -1,4 +1,4 @@
-package main
+package parsing
 
 import (
 	"reflect"
@@ -138,7 +138,7 @@ func TestExtractPageData(t *testing.T) {
 	for _, tc := range cases {
 		tc := tc // shadow the loop variable.
 		t.Run(tc.name, func(t *testing.T) {
-			got := extractPageData(tc.html, tc.pageURL)
+			got := ExtractPageData(tc.html, tc.pageURL)
 
 			if got.URL != tc.want.URL {
 				t.Errorf("URL: want %q, got %q", tc.want.URL, got.URL)

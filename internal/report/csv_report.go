@@ -1,13 +1,14 @@
-package main
+package report
 
 import (
 	"encoding/csv"
+	"github.com/wrelin/web-crawler/internal/parsing"
 	"os"
 	"sort"
 	"strings"
 )
 
-func writeCSVReport(pages map[string]PageData, filename string) error {
+func WriteCSVReport(pages map[string]parsing.PageData, filename string) error {
 	columns := []string{
 		"page_url",
 		"h1",

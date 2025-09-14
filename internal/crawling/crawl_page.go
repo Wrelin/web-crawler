@@ -1,15 +1,16 @@
-package main
+package crawling
 
 import (
 	"fmt"
+	"github.com/wrelin/web-crawler/internal/parsing"
 	"net/url"
 )
 
-func (cfg *config) crawlPage(rawCurrentURL string) {
+func (cfg *Config) CrawlPage(rawCurrentURL string) {
 	cfg.concurrencyControl <- struct{}{}
 	defer func() {
 		<-cfg.concurrencyControl
-		cfg.wg.Done()
+		cfg.Wg.Done()
 	}()
 
 	if cfg.pagesLen() >= cfg.maxPages {
@@ -18,7 +19,7 @@ func (cfg *config) crawlPage(rawCurrentURL string) {
 
 	currentURL, err := url.Parse(rawCurrentURL)
 	if err != nil {
-		fmt.Printf("Error - crawlPage: couldn't parse URL '%s': %v\n", rawCurrentURL, err)
+		fmt.Printf("Error - CrawlPage: couldn't parse URL '%s': %v\n", rawCurrentURL, err)
 		return
 	}
 
@@ -48,12 +49,12 @@ func (cfg *config) crawlPage(rawCurrentURL string) {
 	}
 
 	// Extract all the data we care about and store it
-	pageData := extractPageData(htmlBody, rawCurrentURL)
+	pageData := parsing.ExtractPageData(htmlBody, rawCurrentURL)
 	cfg.setPageData(normalizedURL, pageData)
 
 	// Recurse using the already-extracted outgoing links
 	for _, nextURL := range pageData.OutgoingLinks {
-		cfg.wg.Add(1)
-		go cfg.crawlPage(nextURL)
+		cfg.Wg.Add(1)
+		go cfg.CrawlPage(nextURL)
 	}
 }

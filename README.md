@@ -1,6 +1,7 @@
 # web-crawler
 
-Crawl site concurrently, save result to report.csv.
+Crawl site concurrently, extract page url, first title, first paragraph, image and link urls.  
+Save result to report.csv.
 
 ![Alt Text](demo.gif)
 

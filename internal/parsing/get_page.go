@@ -1,6 +1,8 @@
-package main
+package parsing
 
-import "net/url"
+import (
+	"net/url"
+)
 
 type PageData struct {
 	URL            string
@@ -10,7 +12,7 @@ type PageData struct {
 	ImageURLs      []string
 }
 
-func extractPageData(html, pageURL string) PageData {
+func ExtractPageData(html, pageURL string) PageData {
 	h1 := getH1FromHTML(html)
 	firstParagraph := getFirstParagraphFromHTML(html)
 
