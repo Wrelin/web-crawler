@@ -4,11 +4,16 @@ import (
 	"encoding/csv"
 	"os"
 	"sort"
-	"strings"
 )
 
 func writeCSVReport(pages map[string]PageData, filename string) error {
-	columns := []string{"page_url", "h1", "first_paragraph", "outgoing_link_urls", "image_urls"}
+	columns := []string{
+		"page_url",
+		"h1",
+		"first_paragraph",
+		//"outgoing_link_urls",
+		//"image_urls",
+	}
 
 	file, err := os.Create(filename)
 	if err != nil {
@@ -38,8 +43,8 @@ func writeCSVReport(pages map[string]PageData, filename string) error {
 			page.URL,
 			page.H1,
 			page.FirstParagraph,
-			strings.Join(page.OutgoingLinks, ";"),
-			strings.Join(page.ImageURLs, ","),
+			//strings.Join(page.OutgoingLinks, ";"),
+			//strings.Join(page.ImageURLs, ","),
 		}
 
 		err = writer.Write(row)
