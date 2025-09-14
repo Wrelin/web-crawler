@@ -10,7 +10,7 @@ import (
 func getHTML(rawURL string) (string, error) {
 	client := &http.Client{}
 
-	req, err := http.NewRequest("GET", rawURL, nil)
+	req, err := http.NewRequest(http.MethodGet, rawURL, nil)
 	if err != nil {
 		return "", fmt.Errorf("failed to create request: %v", err)
 	}
@@ -23,7 +23,7 @@ func getHTML(rawURL string) (string, error) {
 	}
 	defer res.Body.Close()
 
-	if res.StatusCode > 399 {
+	if res.StatusCode >= http.StatusBadRequest {
 		return "", fmt.Errorf("got HTTP error: %s", res.Status)
 	}
 
