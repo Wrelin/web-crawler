@@ -9,7 +9,7 @@ Save result to report.csv.
 
 ### Clone the repo
 ```bash
-git clone https://github.com/wreling/web-crawler@latest
+git clone https://github.com/wrelin/web-crawler@latest
 cd web-crawle
 ```
 
