@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"github.com/wrelin/web-crawler/internal/parsing"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 )
@@ -17,7 +18,7 @@ func WriteCSVReport(pages map[string]parsing.PageData, filename string) error {
 		"image_urls",
 	}
 
-	file, err := os.Create(filename)
+	file, err := os.Create(filepath.Clean(filename))
 	if err != nil {
 		return err
 	}
