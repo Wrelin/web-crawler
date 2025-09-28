@@ -2,9 +2,10 @@ package crawling
 
 import (
 	"fmt"
-	"github.com/wrelin/web-crawler/internal/parsing"
 	"net/url"
 	"sync"
+
+	"github.com/wrelin/web-crawler/internal/parsing"
 )
 
 type Config struct {

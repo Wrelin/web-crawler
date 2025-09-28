@@ -2,8 +2,9 @@ package crawling
 
 import (
 	"fmt"
-	"github.com/wrelin/web-crawler/internal/parsing"
 	"net/url"
+
+	"github.com/wrelin/web-crawler/internal/parsing"
 )
 
 func (cfg *Config) CrawlPage(rawCurrentURL string) {

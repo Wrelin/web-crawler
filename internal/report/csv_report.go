@@ -2,11 +2,12 @@ package report
 
 import (
 	"encoding/csv"
-	"github.com/wrelin/web-crawler/internal/parsing"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"github.com/wrelin/web-crawler/internal/parsing"
 )
 
 func WriteCSVReport(pages map[string]parsing.PageData, filename string) error {

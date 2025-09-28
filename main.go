@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/wrelin/web-crawler/internal/crawling"
-	"github.com/wrelin/web-crawler/internal/report"
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/wrelin/web-crawler/internal/crawling"
+	"github.com/wrelin/web-crawler/internal/report"
 )
 
 const defaultMaxConcurrency = 3

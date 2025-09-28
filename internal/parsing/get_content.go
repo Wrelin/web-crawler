@@ -1,8 +1,9 @@
 package parsing
 
 import (
-	"github.com/PuerkitoBio/goquery"
 	"strings"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 func getH1FromHTML(html string) string {
